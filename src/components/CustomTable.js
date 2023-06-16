@@ -67,7 +67,7 @@ function CustomTable({ columns, data, name1, name2 }) {
             </Container>
             <Center>
 
-                <Table {...getTableProps()} colorScheme="linkedin" variant='striped' width={'50%'} border='3px solid gray' marginTop={'5vh'}>
+                <Table {...getTableProps()} variant='striped' width={'50%'} border='3px solid gray' marginTop={'5vh'}>
                     <Thead>
                         {headerGroups.map((headerGroup) => (
                             <Tr {...headerGroup.getHeaderGroupProps()}>

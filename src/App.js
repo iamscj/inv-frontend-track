@@ -12,6 +12,7 @@ import TC from './pages/TC';
 import AC from './pages/AC';
 import AC_details from './pages/AC_details';
 import VCU from './pages/VCU';
+import InsertModules from './pages/InsertModules';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/ac-details' element={<AC />} />
           <Route path='/ac-details/converter/:converter_no' element={<AC_details />} />
           <Route path='/vcu-details' element={<VCU />} />
+          <Route path='/new' element={<InsertModules />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>

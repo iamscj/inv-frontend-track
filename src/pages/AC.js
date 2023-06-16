@@ -39,7 +39,7 @@ const AC = () => {
             for (let key in item) {
                 if (key === 'converter_no') {
                     let val = item[key]
-                    item["view_component"] = <Button colorScheme={'linkedin'} width="100%" onClick={() => navigate(`/ac-details/converter/${val}`)}>View</Button>
+                    item["view_component"] = <Button colorScheme='linkedin' width="100%" onClick={() => navigate(`/ac-details/converter/${val}`)}>View</Button>
                 }
                 else if (key === 'date') {
                     const dateObject = new Date(item[key]);
