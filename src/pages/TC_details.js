@@ -13,6 +13,24 @@ const TC_details = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [result, setResult] = useState([])
     const { converter_no } = useParams();
+
+    const getFullNames = {
+        'pm_1': 'Power Module 1',
+        'pm_2': 'Power Module 2',
+        'pm_3': 'Power Module 3',
+        'pm_4': 'Power Module 4',
+        'pm_5': 'Power Module 5',
+        'pm_6': 'Power Module 6',
+        'pm_7': 'Power Module 7',
+        'pm_8': 'Power Module 8',
+        'pm_9': 'Power Module 9',
+        'dcu_1': 'Drive Control Unit 1',
+        'dcu_2': ' Drive Control Unit 2',
+        'dcu_3': ' Drive Control Unit 3',
+        'viu': 'Vehicle Interface Unit',
+        'mfi': 'MVB Fibre Interface'
+    };
+
     const get_converter_details = async () => {
         try {
             const response = await axios.get(`https://inv-server-gold.vercel.app/tc-details/${converter_no}`);
@@ -39,7 +57,7 @@ const TC_details = () => {
         const keys = Object.keys(tc_data_for_converter_no[0])
         for (let i = 0; i < keys.length; i++) {
             result1.push({
-                "key1": keys[i],
+                "key1": getFullNames[keys[i]],
                 "key2": tc_data_for_converter_no[0][keys[i]],
                 "key3": <Button colorScheme={'linkedin'} width="100%">Claim</Button>
             })

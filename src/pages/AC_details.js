@@ -13,6 +13,19 @@ const AC_details = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [result, setResult] = useState([])
     const { converter_no } = useParams();
+
+    const getFullNames = {
+        'cr_1': 'Controlled Rectifier 1',
+        'cr_2': 'Controlled Rectifier 2',
+        'buffer_1': 'Buffer 1',
+        'buffer_2': 'Buffer 2',
+        'inverter_1': 'Inverter 1',
+        'inverter_2': 'Inverter 2',
+        'aci_1': 'Auxilary Control Interface 1',
+        'aci_2': 'Auxilary Control Interface 2',
+        'battery_charger': 'Battery Charger'
+    };
+
     const get_converter_details = async () => {
         try {
             const response = await axios.get(`https://inv-server-gold.vercel.app/ac-details/${converter_no}`);
@@ -23,7 +36,6 @@ const AC_details = () => {
             console.error(error);
         }
     };
-
     useEffect(() => {
         get_converter_details();
     }, []);
@@ -39,12 +51,11 @@ const AC_details = () => {
         const keys = Object.keys(ac_data_for_converter_no[0])
         for (let i = 0; i < keys.length; i++) {
             result1.push({
-                "key1": keys[i],
+                "key1": getFullNames[keys[i]],
                 "key2": ac_data_for_converter_no[0][keys[i]],
                 "key3": <Button colorScheme={'linkedin'} width="100%">Claim</Button>
             })
         }
-
         setResult(result1)
     };
 

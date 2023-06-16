@@ -13,10 +13,12 @@ import AC from './pages/AC';
 import AC_details from './pages/AC_details';
 import VCU from './pages/VCU';
 import InsertModules from './pages/InsertModules';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
+      <NavBar />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<SignInSignUp />} />
