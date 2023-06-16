@@ -26,6 +26,9 @@ const Dashboard = () => {
     return (
         <ThemeProvider theme={theme}>
             <Button onClick={() => navigate('/tc-details')} >TC DETAILS</Button>
+            <Button onClick={() => navigate('/ac-details')} >AC DETAILS</Button>
+            <Button onClick={() => navigate('/vcu-details')} >VCU DETAILS</Button>
+            <Button onClick={() => navigate('/new')} >ADD COMP</Button>
             <Grid bg='blue.100' marginTop='10vh' height='90vh' px={'4vh'} py={'4vh'} templateColumns='repeat(5, 1fr)' templateRows='repeat(3, 1fr)' rowGap={3} columnGap={3}>
                 <GridItem w='100%' h='54vh' rowSpan={2} colSpan={3} border='3px solid lightgray' borderRadius={10} bg='white' />
                 <GridItem w='100%' h='54vh' rowSpan={2} colSpan={1} border='3px solid lightgray' borderRadius={10} bg='white' />

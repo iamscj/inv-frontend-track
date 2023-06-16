@@ -2,6 +2,7 @@ import React from 'react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Container } from '@chakra-ui/react'
 import TCForm from '../components/TCForm'
 import ACForm from '../components/ACForm'
+import VCUForm from '../components/VCUForm'
 
 const InsertModules = () => {
     return (
@@ -20,7 +21,7 @@ const InsertModules = () => {
                         <ACForm />
                     </TabPanel>
                     <TabPanel>
-                        <p>three!</p>
+                        <VCUForm />
                     </TabPanel>
                 </TabPanels>
             </Tabs>

@@ -74,7 +74,6 @@ export default function TCForm() {
 
         try {
             const response = await axios.post(`https://inv-server-gold.vercel.app/insert-tc`, tcData);
-            console.log(response.data);
 
             if (response.data.msg && response.data.msg !== 'successfull') {
                 setError(response.data.msg)

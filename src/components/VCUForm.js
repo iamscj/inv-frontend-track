@@ -14,34 +14,25 @@ import {
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-const acDataInitialValues = {
+const vcuDataInitialValues = {
     converter_no: "",
-    cr_1: "",
-    cr_2: "",
-    buffer_1: "",
-    buffer_2: "",
-    inverter_1: "",
-    inverter_2: "",
-    aci_1: "",
-    aci_2: "",
-    battery_charger: "",
     date: "",
 }
 
-export default function ACForm() {
+export default function VCUForm() {
     const navigate = useNavigate();
     const toast = useToast();
-    const [acData, setACData] = useState(acDataInitialValues);
+    const [vcuData, setVCUData] = useState(vcuDataInitialValues);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
     const onInputChange = (e) => {
-        setACData({ ...acData, [e.target.name]: e.target.value })
+        setVCUData({ ...vcuData, [e.target.name]: e.target.value })
     }
     const submitInsert = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         setError("")
-        if (acData.converter_no.trim() === "") {
+        if (vcuData.converter_no.trim() === "") {
             toast({
                 title: "Error",
                 description: "Please fill all the fields",
@@ -54,22 +45,19 @@ export default function ACForm() {
             return;
         }
         const currentDate = new Date();
-
         const year = currentDate.getFullYear();
         const month = String(currentDate.getMonth() + 1).padStart(2, '0');
         const day = String(currentDate.getDate()).padStart(2, '0');
         const sqlFormattedDate = `${year}-${month}-${day}`;
-        const updatedacData = {
-            ...acData,
+        const updatedvcuData = {
+            ...vcuData,
             date: sqlFormattedDate,
         };
 
-        setACData(updatedacData);
+        setVCUData(updatedvcuData);
 
         try {
-
-            const response = await axios.post(`https://inv-server-gold.vercel.app/insert-ac`, acData);
-
+            const response = await axios.post(`https://inv-server-gold.vercel.app/insert-vcu`, vcuData);
             if (response.data.msg && response.data.msg !== 'successfull') {
                 setError(response.data.msg)
                 toast({
@@ -117,70 +105,6 @@ export default function ACForm() {
                                 <Input name="converter_no" onChange={(e) => onInputChange(e)} />
                             </InputGroup>
                         </FormControl>
-                        <InputGroup>
-                            <FormControl mx="15px">
-                                <InputGroup>
-                                    <InputLeftAddon children='Controlled Rectifier 1' bg={"pink"} />
-                                    <Input name="cr_1" onChange={(e) => onInputChange(e)} />
-                                </InputGroup>
-                            </FormControl>
-                            <FormControl mx="15px">
-                                <InputGroup>
-                                    <InputLeftAddon children='Controlled Rectifier 2' bg={"pink"} />
-                                    <Input name="cr_2" onChange={(e) => onInputChange(e)} />
-                                </InputGroup>
-                            </FormControl>
-                        </InputGroup>
-                        <InputGroup>
-                            <FormControl mx="15px">
-                                <InputGroup>
-                                    <InputLeftAddon children='Buffer 1' bg={"green.100"} />
-                                    <Input name="buffer_1" onChange={(e) => onInputChange(e)} />
-                                </InputGroup>
-                            </FormControl>
-                            <FormControl mx="15px">
-                                <InputGroup>
-                                    <InputLeftAddon children='Buffer 2' bg={"green.100"} />
-                                    <Input name="buffer_2" onChange={(e) => onInputChange(e)} />
-                                </InputGroup>
-                            </FormControl>
-                        </InputGroup>
-                        <InputGroup>
-                            <FormControl mx="15px">
-                                <InputGroup>
-                                    <InputLeftAddon children='Inverter 1' bg={"blue.200"} />
-                                    <Input name="inverter_1" onChange={(e) => onInputChange(e)} />
-                                </InputGroup>
-                            </FormControl>
-                            <FormControl mx="15px">
-                                <InputGroup>
-                                    <InputLeftAddon children='Inverter 2' bg={"blue.200"} />
-                                    <Input name="inverter_2" onChange={(e) => onInputChange(e)} />
-                                </InputGroup>
-                            </FormControl>
-                        </InputGroup>
-                        <InputGroup>
-                            <FormControl mx="15px">
-                                <InputGroup>
-                                    <InputLeftAddon children='Auxilary Control Interface 1' bg={"cyan.300"} />
-                                    <Input name="aci_1" onChange={(e) => onInputChange(e)} />
-                                </InputGroup>
-                            </FormControl>
-                            <FormControl mx="4px">
-                                <InputGroup>
-                                    <InputLeftAddon children='Auxilary Control Interface 2' bg="cyan.300" />
-                                    <Input name="aci_2" onChange={(e) => onInputChange(e)} />
-                                </InputGroup>
-                            </FormControl>
-                        </InputGroup>
-                        <InputGroup>
-                            <FormControl mx="15px">
-                                <InputGroup>
-                                    <InputLeftAddon children='Battery Charger' bg="yellow.200" />
-                                    <Input name="battery_charger" onChange={(e) => onInputChange(e)} />
-                                </InputGroup>
-                            </FormControl>
-                        </InputGroup>
                         <Stack spacing={10}>
                             <Button
                                 isLoading={isLoading}
